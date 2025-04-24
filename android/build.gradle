@@ -1,0 +1,154 @@
+group = "com.example.flutter_zoom_meeting_wrapper"
+version = "1.0-SNAPSHOT"
+
+buildscript {
+    ext.kotlin_version = "2.0.20"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.4.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+    }
+}
+
+// allprojects {
+//     repositories {
+//         google()
+//         mavenCentral()
+//         flatDir {
+//             dirs 'libs' // 👈 This is important and correct here
+//         }
+//     }
+// }
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+
+        flatDir {
+            dirs project(':flutter_zoom_meeting_wrapper').file('libs')
+        }
+    }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    namespace = "com.example.flutter_zoom_meeting_wrapper"
+
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 21
+          ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+          multiDexEnabled true
+    }
+
+    compileOptions {
+        // coreLibraryDesugaringEnabled true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+    packagingOptions {
+        pickFirst 'lib/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'META-INF/LICENSE.txt'
+        pickFirst 'META-INF/NOTICE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+
+    lintOptions {
+        disable 'MissingApplicationIcon'
+        disable 'InvalidPackage'
+        disable "Instantiatable"
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+            }
+        }
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.3'
+    
+    // AAR File: Zoom SDK
+    api(name: 'mobilertc', ext: 'aar') // ✅ This must match exactly: mobilertc.aar in libs/
+    implementation 'androidx.multidex:multidex:2.0.1'
+    // Jetpack and Zoom dependencies
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+   
+    // ExoPlayer (for Zoom SDK media)
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.7'
+
+    // Lottie animation
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
+    // Kotlin stdlib
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.20"
+
+    // Test dependencies
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    testImplementation("org.mockito:mockito-core:5.0.0")
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.7.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    implementation 'com.google.crypto.tink:tink-android:1.7.0'
+        // Add this WebView compatibility library
+    implementation 'androidx.webkit:webkit:1.6.1'
+
+    implementation 'androidx.fragment:fragment:1.5.7'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.6.1'
+    implementation 'androidx.databinding:viewbinding:8.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.8'
+    // Optional - If you're using navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.7"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.7"
+}
