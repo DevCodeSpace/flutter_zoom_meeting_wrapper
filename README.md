@@ -22,6 +22,30 @@ Add the following to your `pubspec.yaml` file:
 dependencies:
   flutter_zoom_meeting_wrapper: ^0.0.1
 ```
+---
+## ⚙️ Mandatory Zoom SDK Setup
+
+Follow these steps to properly set up the Zoom SDK:
+
+1. Add the dependency and run `flutter pub get`.
+2. Download the Zoom SDK ZIP from the following link:  
+   👉 [Zoom SDK Download](https://drive.google.com/file/d/1aKhrS5JCVSxvQkfdXH0N1h45Lk2gt6P9/view?usp=sharing)
+3. Extract the ZIP file after downloading.
+4. Copy the `libs` folder and paste it inside your Flutter pub-cache directory at:
+   ```
+   ~/.pub-cache/hosted/pub.dev/flutter_zoom_meeting_wrapper-0.0.1/android/
+   ```
+   > 🔁 Replace `0.0.1` with the version you’re using, if different.
+
+5. Or run the following command to open the folder directly:
+   ```bash
+   open ~/.pub-cache/hosted/pub.dev/flutter_zoom_meeting_wrapper-0.0.1/android
+   ```
+
+> ⚠️ **Important:** The `libs` folder **must** be placed in the correct location for the plugin to function properly.
+
+---
+
 
 ## 🔑 Getting Started with Zoom SDK
 
@@ -29,6 +53,8 @@ dependencies:
 2. Create an app in the Zoom Marketplace
 3. Get your API Key and API Secret from the app credentials
 4. Use these to generate your JWT token
+
+---
 
 ## 🔒 Generate JWT Token
 To generate a ZOOM JWT token, you can use https://jwt.io/ with the following payload and signature:
@@ -92,3 +118,10 @@ bool joinSuccess = await ZoomMeetingWrapper.joinMeeting(
 ## 👨‍💻 Code Contributors
 
 <img src="assets/contributors.png" width="230" alt="Zoom Meeting Wrapper contributors" />
+
+
+
+
+
+
+
