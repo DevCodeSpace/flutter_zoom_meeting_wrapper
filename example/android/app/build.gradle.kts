@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.flutter_zoom_meeting_wrapper_example"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

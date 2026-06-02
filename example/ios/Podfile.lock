@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_zoom_meeting_wrapper (0.0.2):
+    - Flutter
+  - integration_test (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_zoom_meeting_wrapper (from `.symlinks/plugins/flutter_zoom_meeting_wrapper/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_zoom_meeting_wrapper:
+    :path: ".symlinks/plugins/flutter_zoom_meeting_wrapper/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_zoom_meeting_wrapper: b2552a5bf708581726f2f7cff11bae7ab329e4c5
+  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
+
+PODFILE CHECKSUM: 174c47251fa489af4da6bc95f559520443eb2b45
+
+COCOAPODS: 1.16.2
