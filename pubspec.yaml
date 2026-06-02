@@ -1,23 +1,23 @@
 name: flutter_zoom_meeting_wrapper
 description: "A Flutter plugin to integrate Zoom Meeting SDK directly in your app. Join meetings without switching to Zoom app. Simple initialization with JWT authentication."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/DevCodeSpace/flutter_zoom_meeting_wrapper
 issue_tracker: https://github.com/DevCodeSpace/flutter_zoom_meeting_wrapper/issues
 documentation: https://pub.dev/documentation/flutter_zoom_meeting_wrapper/latest/
 
 environment:
   sdk: ^3.7.2
-  flutter: '>=3.3.0'
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
+  plugin_platform_interface: ^2.1.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 screenshots:
   - description: "Zoom meetings join made simple"
@@ -44,7 +44,7 @@ flutter:
         package: com.example.flutter_zoom_meeting_wrapper
         pluginClass: FlutterZoomMeetingWrapper
       ios:
-        pluginClass: FlutterZoomMeetingWrapper
+        pluginClass: FlutterZoomMeetingWrapperPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

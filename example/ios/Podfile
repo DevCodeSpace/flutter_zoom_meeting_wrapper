@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '12.0'
+platform :ios, '15.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -39,5 +39,17 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+  end
+
+  # The bundled Zoom Meeting SDK simulator framework is arm64-only.
+  # Keep the example app on arm64 so it can link the plugin and MobileRTC.
+  installer.aggregate_targets.each do |aggregate_target|
+    aggregate_target.user_project.native_targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = '$(inherited) i386 x86_64'
+        config.build_settings['SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD'] = 'NO'
+      end
+    end
+    aggregate_target.user_project.save
   end
 end
